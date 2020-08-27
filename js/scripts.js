@@ -25,6 +25,9 @@ console.log( guessButton );
 const restartButton = document.getElementById( 'restart' );
 console.log( restartButton );
 
+const hangmanImage = document.getElementById( 'image' );
+console.log( hangmanImage );
+
 // Citation
 //Got words from https://www.randomlists.com/random-words
 const listOfWords = ["label",
@@ -93,7 +96,8 @@ function setup()
     //display_word();
     //previousGuessesArray.splice(0, previousGuessesArray.length);
     chancesVariable = 6;
-    chances.append( chancesVariable );    
+    chances.append( chancesVariable ); 
+    inputLetter.value="";   
 }
 //Find indices of letter in random word
 //Citation
@@ -133,6 +137,39 @@ function showConfirmationBox(message)
     document.getElementById("msg").innerHTML = userPreference; 
 }
 
+function validateInput(myLetter, myArray)
+{
+    errorMessage.textContent="";
+    //To validate input is only alphabet
+    //Citation
+    //https://stackoverflow.com/questions/23556533/how-do-i-make-an-input-field-accept-only-letters-in-javascript
+    var alphabets = /^[a-zA-Z]/;
+    //End Citation
+
+    if( myArray.includes( myLetter ))
+    {
+        errorMessage.textContent="You already guessed this letter, Try a different one";
+        return false;
+    }
+    else if( myLetter=="" || myLetter==" "|| !myLetter.match(alphabets) )
+    {
+        errorMessage.textContent="Invalid Input. Please enter a letter."
+        return false;
+    }
+    else
+    {
+        return true;
+    }  
+
+}
+
+function changeImage(number)
+{
+
+    images=["img/right.png","img/0wrong.png","img/1wrong.png","img/2wrong.png","img/3wrong.png","img/4wrong.png","img/5wrong.png","img/6wrong.png"];
+    hangmanImage.src= images[(6-number)];
+}
+
 setup();
 
 //Add Event Listener to Form Submission
@@ -141,20 +178,9 @@ guessButton.addEventListener('click', (event) => {
     const inputLetterValue = inputLetter.value.toLowerCase();
     console.log( inputLetterValue );
 
-    inputLetter.value ="";
-    errorMessage.textContent="";
-    //To validate input is only alphabet
-    //Citation
-    //https://stackoverflow.com/questions/23556533/how-do-i-make-an-input-field-accept-only-letters-in-javascript
-   var alphabets = /^[a-zA-Z]/;
-   //End Citation
+    inputLetter.value ="";   
 
-    if( previousGuessesArray.includes( inputLetterValue )|| inputLetterValue=="" || inputLetterValue==" "|| !inputLetterValue.match(alphabets))
-    {
-        errorMessage.textContent="You already guessed this letter, Try a different one";
-    }
-
-    else
+    if( validateInput(inputLetterValue, previousGuessesArray))
     {
         previousGuessesArray.push( inputLetterValue );
         console.log( randomWord );
@@ -186,6 +212,7 @@ guessButton.addEventListener('click', (event) => {
                 chancesVariable--;
                 chances.textContent="";
                 chances.append( chancesVariable );
+                changeImage( chancesVariable );
 
                 previousGuesses.textContent="";
                 for(const letter of previousGuessesArray)

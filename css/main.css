@@ -1,20 +1,36 @@
 body{
     width: 70vw;
     margin: 10px auto;
-    font-size: xx-large;   
+    font-size: xx-large;  
+    position: relative; 
 
+}
+form{
+    display: inline-block;
+    width:70%;
+    /* padding-top:10%;
+    padding-bottom: 10%; */
+    
 }
 #guess-button, #restart{
     display: inline-block;
     font-size: x-large;
 }
 
-#error-message{
-    font-size: large;
-}
-
-#msg{
+#error-message, #msg{
     font-size: large;
     font-style: italic;
     color: #ff0000;
 }
+#msg{
+    font-size: x-large;
+}
+
+#image{
+    
+    width:20%;
+    padding-left: 5%;
+    display: inline-block;
+}
+
+

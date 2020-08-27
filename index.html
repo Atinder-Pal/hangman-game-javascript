@@ -12,18 +12,25 @@
     <script src="js/scripts.js" type="text/JavaScript" defer></script>
 </head>
 <body>
-    <h1>Let's Play HANGMAN!!</h1> <span id="msg"></span>
-    <p>Enter a guess to begin</p>
+    <h1>Let's Play HANGMAN!! <span id="msg"></span></h1> 
+    <p>Enter a guess to begin <button id="restart">Restart</button></p>
+    
     <form action="#" id="form">
-        <fieldset>
-            <span>Enter a guess:</span> <span> <input type="text" id="inputLetter" minlength="1" maxlength="1" pattern="[A-Za-z]"  title="Please enter an alphabet to guess" required></span>
-            <input type="submit" id ="guess-button" value="Guess"> 
-            <button id="restart">Restart</button><span id="error-message"></span>
+        <fieldset>            
+            <p>
+                <span>Enter a guess:</span> 
+                <span> <input type="text" id="inputLetter" minlength="1" maxlength="1" pattern="[A-Za-z]"  title="Please enter an alphabet to guess" required></span>
+                <input type="submit" id ="guess-button" value="Guess"> 
+            </p>        
+           
+            <span id="error-message"></span>
             <p>Word:<span id="underscoreWord"></span></p>
             <p>Chances: <span id="chances"></span></p>
             <p>Previous Guesses: <span id="previous-guesses"></span></p>
         </fieldset>
     </form>
+    <img src="img/right.png" alt="hangman image" id="image">
+    
     
 </body>
 </html>
