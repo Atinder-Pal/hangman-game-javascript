@@ -14,8 +14,15 @@
 <body>
     <h1>Let's Play HANGMAN!!</h1>
     <p>Enter a guess to begin</p>
-    <span>Enter a guess:</span> <span> <input type="text" id="inputLetter" minlength="1" maxlength="1" pattern="[A-Za-z]"  title="Please enter an alphabet to guess"></span>
-    <input type="submit" id ="guess-button" value="Guess">
+    <form action="#" id="form">
+        <fieldset>
+            <span>Enter a guess:</span> <span> <input type="text" id="inputLetter" minlength="1" maxlength="1" pattern="[A-Za-z]"  title="Please enter an alphabet to guess"></span>
+            <input type="submit" id ="guess-button" value="Guess">
+            <p>Word:<span id="underscoreWord"></span></p>
+            <p>Chances: <span id="chances"></span></p>
+            <p>Previous Guesses: <span id="previous-guesses"></span></p>
+        </fieldset>
+    </form>
     
 </body>
 </html>

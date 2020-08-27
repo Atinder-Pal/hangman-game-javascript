@@ -1,0 +1,10 @@
+body{
+    width: 70vw;
+    margin: 10px auto;
+    font-size: xx-large;   
+
+}
+#guess-button{
+    display: inline-block;
+    font-size: x-large;
+}
