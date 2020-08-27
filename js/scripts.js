@@ -16,6 +16,9 @@ console.log( chances );
 const previousGuesses = document.getElementById( 'previous-guesses' );
 console.log( previousGuesses );
 
+const errorMessage = document.getElementById( 'error-message' );
+console.log( errorMessage );
+
 // Citation
 //Got words from https://www.randomlists.com/random-words
 const listOfWords = ["label",
@@ -31,9 +34,8 @@ const listOfWords = ["label",
 "dispensable"];
 //End Citation
 
-const previousGuessesArray = [];
+const previousGuessesArray = ["d"];
 var chancesVariable = 6;
-var underscoreWordVariable = "";
 var arrayOfUnderscores =[];
 
 function getRandomWord()
@@ -51,25 +53,27 @@ function getRandomWord()
 //console.log(getRandomWord());
 
 function display_word()
-{
-    underscoreWordVariable = "";
+{    
+    arrayOfUnderscores =[];
     let randomWord = getRandomWord();
     let lengthOf_word = randomWord.length;
     console.log( randomWord );
     for (let i=0;i<lengthOf_word;i++)
     {
-        underscoreWordVariable +=" _ ";
+        arrayOfUnderscores.push(" _ ");
     }
-    underscoreWord.append(underscoreWordVariable);
-    return underscoreWordVariable;
+    for(const letter of arrayOfUnderscores)
+    {
+        underscoreWord.append( letter );
+    }    
+    return arrayOfUnderscores;
 }
-
 
 function setup()
 {
     console.log(display_word());
     //display_word();
-    previousGuessesArray.splice(0, previousGuessesArray.length);
+    //previousGuessesArray.splice(0, previousGuessesArray.length);
     chancesVariable = 6;
     chances.append( chancesVariable );    
 }
@@ -77,7 +81,16 @@ function setup()
 setup();
 
 //Add Event Listener to Form Submission
-// gameForm.addEventListener('click', (event) => {
+gameForm.addEventListener('click', (event) => {
+    event.preventDefault();
+    const inputLetterValue = inputLetter.value;
+    console.log( inputLetterValue );
 
+    inputLetter.value ="";
+    errorMessage.innerHTML="";
+    if( previousGuessesArray.includes( inputLetterValue ))
+    {
+        errorMessage.innerHTML="You already guessed this letter, Try a different one";
+    }
 
-// });
+ });

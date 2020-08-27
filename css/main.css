@@ -8,3 +8,7 @@ body{
     display: inline-block;
     font-size: x-large;
 }
+
+#error-message{
+    font-size: large;
+}
