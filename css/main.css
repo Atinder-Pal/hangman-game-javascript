@@ -4,11 +4,17 @@ body{
     font-size: xx-large;   
 
 }
-#guess-button{
+#guess-button, #restart{
     display: inline-block;
     font-size: x-large;
 }
 
 #error-message{
     font-size: large;
+}
+
+#msg{
+    font-size: large;
+    font-style: italic;
+    color: #ff0000;
 }

@@ -22,6 +22,9 @@ console.log( errorMessage );
 const guessButton = document.getElementById( 'guess-button' );
 console.log( guessButton );
 
+const restartButton = document.getElementById( 'restart' );
+console.log( restartButton );
+
 // Citation
 //Got words from https://www.randomlists.com/random-words
 const listOfWords = ["label",
@@ -37,7 +40,7 @@ const listOfWords = ["label",
 "dispensable"];
 //End Citation
 
-const previousGuessesArray = ["z"];
+const previousGuessesArray = [];
 var chancesVariable = 6;
 var arrayOfUnderscores =[];
 var randomWord = "";
@@ -115,6 +118,21 @@ function replaceAt(positions, myArray, myLetter)
     return myArray;
 }
 
+function showConfirmationBox(message)
+{
+    var userPreference;
+    if (confirm("You "+ message + "!!!"+
+    "  Do you wanna play again?") == true) {
+        location.reload();
+    } else {
+        userPreference = "New game cancelled!";
+        inputLetter.diabled=true;
+        guessButton.disabled=true;
+    }
+
+    document.getElementById("msg").innerHTML = userPreference; 
+}
+
 setup();
 
 //Add Event Listener to Form Submission
@@ -157,6 +175,7 @@ guessButton.addEventListener('click', (event) => {
             if( !arrayOfUnderscores.includes(" _ "))
             {
                 console.log("word is complete");
+                showConfirmationBox("win");
             }
         }
 
@@ -178,6 +197,7 @@ guessButton.addEventListener('click', (event) => {
             if(chancesVariable ==-1)
             {
                 console.log("chances are all used");
+                showConfirmationBox("lose");
             }
             
         }
@@ -185,3 +205,8 @@ guessButton.addEventListener('click', (event) => {
     }
 
  });
+
+restartButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    location.reload();
+});

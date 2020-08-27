@@ -12,12 +12,13 @@
     <script src="js/scripts.js" type="text/JavaScript" defer></script>
 </head>
 <body>
-    <h1>Let's Play HANGMAN!!</h1>
+    <h1>Let's Play HANGMAN!!</h1> <span id="msg"></span>
     <p>Enter a guess to begin</p>
     <form action="#" id="form">
         <fieldset>
             <span>Enter a guess:</span> <span> <input type="text" id="inputLetter" minlength="1" maxlength="1" pattern="[A-Za-z]"  title="Please enter an alphabet to guess" required></span>
-            <input type="submit" id ="guess-button" value="Guess"> <span id="error-message"></span>
+            <input type="submit" id ="guess-button" value="Guess"> 
+            <button id="restart">Restart</button><span id="error-message"></span>
             <p>Word:<span id="underscoreWord"></span></p>
             <p>Chances: <span id="chances"></span></p>
             <p>Previous Guesses: <span id="previous-guesses"></span></p>
