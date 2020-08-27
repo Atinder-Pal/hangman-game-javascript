@@ -14,3 +14,7 @@ I.e.: User guesses ‘m’ so the word appears as “_ _ _ _ _ _ m m _ _ _”
 
 
 Link to Trello Board: https://trello.com/b/YTnDztqX/javascript-assignment-hangman
+
+
+**Citation Summary**
+

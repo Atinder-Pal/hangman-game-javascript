@@ -29,7 +29,7 @@ const hangmanImage = document.getElementById( 'image' );
 console.log( hangmanImage );
 
 // Citation
-//Got words from https://www.randomlists.com/random-words
+//Got words from https://www.wordgenerator.net/random-word-generator.php
 const listOfWords = ["label",
 "dinner",
 "distinct",
@@ -40,7 +40,19 @@ const listOfWords = ["label",
 "harsh",
 "flashy",
 "cat",
-"dispensable"];
+"dispensable",
+"explicate",
+"whetile",
+"exesion",
+"indisciplinable",
+"indicatrix",
+"pernicion",
+"octosyllable",
+"frontispiece",
+"Spatterdashed",
+"glidingly",
+"antiphonal",
+];
 //End Citation
 
 const previousGuessesArray = [];
@@ -87,18 +99,17 @@ function display_word(myArray)
         underscoreWord.append( letter );
     }    
     return myArray;
-
 }
 
 function setup()
 {
-    console.log(displayInitial_word());
-    //display_word();
-    //previousGuessesArray.splice(0, previousGuessesArray.length);
+    console.log(displayInitial_word());    
+    previousGuessesArray.splice(0, previousGuessesArray.length);
     chancesVariable = 6;
     chances.append( chancesVariable ); 
     inputLetter.value="";   
 }
+
 //Find indices of letter in random word
 //Citation
 //https://stackoverflow.com/questions/10710345/finding-all-indexes-of-a-specified-character-within-a-string
@@ -124,6 +135,9 @@ function replaceAt(positions, myArray, myLetter)
 
 function showConfirmationBox(message)
 {
+    //Citation
+    //https://www.tutorialsteacher.com/codeeditor?cid=js-2
+    //I did not know how to use confirmaion box, so checked tutorials and used the code
     var userPreference;
     if (confirm("You "+ message + "!!!"+
     "  Do you wanna play again?") == true) {
@@ -132,14 +146,14 @@ function showConfirmationBox(message)
         userPreference = "New game cancelled!";
         inputLetter.diabled=true;
         guessButton.disabled=true;
+        document.getElementById("msg").innerHTML = userPreference;
     }
-
-    document.getElementById("msg").innerHTML = userPreference; 
+    //End Citation     
 }
 
 function validateInput(myLetter, myArray)
 {
-    errorMessage.textContent="";
+    errorMessage.textContent=":";
     //To validate input is only alphabet
     //Citation
     //https://stackoverflow.com/questions/23556533/how-do-i-make-an-input-field-accept-only-letters-in-javascript
@@ -160,13 +174,13 @@ function validateInput(myLetter, myArray)
     {
         return true;
     }  
-
 }
 
 function changeImage(number)
 {
-
+    //Images used here are all taken from 'Lindsey Graham" with his consent
     images=["img/right.png","img/0wrong.png","img/1wrong.png","img/2wrong.png","img/3wrong.png","img/4wrong.png","img/5wrong.png","img/6wrong.png"];
+
     hangmanImage.src= images[(6-number)];
 }
 
@@ -177,7 +191,7 @@ guessButton.addEventListener('click', (event) => {
     event.preventDefault();
     const inputLetterValue = inputLetter.value.toLowerCase();
     console.log( inputLetterValue );
-
+    //textbox becomes empty after user hits guess button
     inputLetter.value ="";   
 
     if( validateInput(inputLetterValue, previousGuessesArray))
@@ -198,6 +212,7 @@ guessButton.addEventListener('click', (event) => {
             {
                 previousGuesses.append( " "+letter );
             } 
+            //When the user guesses whole word
             if( !arrayOfUnderscores.includes(" _ "))
             {
                 console.log("word is complete");
@@ -220,19 +235,17 @@ guessButton.addEventListener('click', (event) => {
                     previousGuesses.append( " "+letter );
                 } 
             }
-
+            //When user gets it wrong and user has 0 chances left
             if(chancesVariable ==-1)
             {
                 console.log("chances are all used");
                 showConfirmationBox("lose");
-            }
-            
-        }
-        console.log( previousGuessesArray );
+            }            
+        }        
     }
-
  });
 
+ //Add event listener on Restart Button so user can start afresh anytime
 restartButton.addEventListener('click', (event) => {
     event.preventDefault();
     location.reload();
