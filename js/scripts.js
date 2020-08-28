@@ -77,7 +77,7 @@ function getRandomWord()
 function displayInitial_word()
 {    
     arrayOfUnderscores =[];
-    randomWord = getRandomWord();
+    randomWord = getRandomWord().toLowerCase();
     let lengthOf_word = randomWord.length;
     console.log( randomWord );
     for (let i=0;i<lengthOf_word;i++)
